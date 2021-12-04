@@ -289,7 +289,7 @@ int main(int argc, char** argv)
   // NOTE: Output is not stable, don't use it for tests
   if (dumpIR)
   {
-    mod->dump();
+    mod->print(llvm::errs(), nullptr);
   }
 
   return 0;

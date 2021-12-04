@@ -55,10 +55,16 @@ Note the `;` to separate arguments.
 There is a final option, you can point Verona at a pre-built LLVM install
 directory
 ```
-cmake -DVERONA_LLVM_LOCATION=[location of an instal of llvm] ..
+cmake -DVERONA_USE_EXTERNAL_LLVM_DIR=[location of an install of llvm] ..
 ```
 This is useful if you are working on a LLVM/MLIR issues related to Verona in a
 separate checkout.
+
+On systems with a combined libclang-cpp instead of separate clang libraries,
+build with:
+```
+cmake -DVERONA_USE_COMBINED_CLANG_LIB=ON ..
+```
 
 # Building on Windows
 

@@ -24,23 +24,28 @@ add_definitions(${CLANG_DEFINITIONS})
 add_llvm_executable(verona-interop verona-interop.cc)
 llvm_update_compile_flags(verona-interop)
 
-target_link_libraries(verona-interop PRIVATE
-    clangAST
-    clangASTMatchers
-    clangAnalysis
-    clangBasic
-    clangCodeGen
-    clangDriver
-    clangEdit
-    clangFrontend
-    clangFrontendTool
-    clangLex
-    clangParse
-    clangRewrite
-    clangRewriteFrontend
-    clangSema
-    clangSerialization
-    clangTooling
-    clangCodeGen)
+if(VERONA_USE_COMBINED_CLANG_LIB)
+    target_link_libraries(verona-interop PRIVATE clang-cpp)
+else()
+    target_link_libraries(verona-interop PRIVATE
+        clangAST
+        clangASTMatchers
+        clangAnalysis
+        clangBasic
+        clangCodeGen
+        clangDriver
+        clangEdit
+        clangFrontend
+        clangFrontendTool
+        clangLex
+        clangParse
+        clangRewrite
+        clangRewriteFrontend
+        clangSema
+        clangSerialization
+        clangTooling
+        clangCodeGen
+    )
+endif()
 
 install(TARGETS verona-interop RUNTIME DESTINATION .)
